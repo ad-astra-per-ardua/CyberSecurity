@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+</head>
+<body>
+    <h1>Search for a Person</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if result and result|length > 0 %}
+        <h2>Results:</h2>
+        <ul>
+            {% for person in result %}
+                <li>ID: {{ person.0 }}, Name: {{ person.1 }}, Score: {{ person.2 }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>No results found.</h2>
+    {% endif %}
+</body>
+</html>
